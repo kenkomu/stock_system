@@ -4,17 +4,18 @@ require_once 'php_action/db_connect.php';
 
 session_start();
 $errors = array();
+$username = $password = '';
 if($_POST) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    $username = $_POST['Username'];
+    $password = $_POST['Password'];
 
     if(empty($username) || empty($password)) {
         if($username == "") {
-            $errors[] = "Username is required";
+            $errors['username'] = "Username is required";
         }
         
         if($password == ""){
-            $errors[] = "Password is required";
+            $errors['password'] = "Password is required";
         }
 
     } else {
@@ -22,26 +23,27 @@ if($_POST) {
         $result = $connect->query($sql);
 
         if($result->num_rows == 1) {
-            $password = md5($password);
+            // $password = $password;
             //exists
             $mainSql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
             $mainResult = $connect->query($mainSql);
 
             if($mainResult->num_rows == 1) {
                 $value = $mainResult->fetch_assoc();
+                print_r($value);
                 $user_id = $value['user_id'];
 
                 //set session
                 $_SESSION['userId'] = $user_id;
 
-                header('location: http://localhost/stock_system/dashboard.php');
+                header('location:dashboard.php');
 
             } else {
-                $errors[] = "Incorrect username/password combination";
+                $errors['username'] = "Incorrect username/password combination";
             }
             
         } else{
-            $errors[] = "Username does not exists";
+            $errors['password'] = "Username does not exists";
         }
     }
 }
@@ -90,7 +92,7 @@ if($_POST) {
                         <div class="form-group">
                             <label for="Username" class="col-sm-2 control-label">Username</label>
                             <div class="col-sm-10">
-                            <input type="text" class="form-control" id="username" placeholder="Username">
+                            <input type="text" class="form-control" id="username" placeholder="Username" name="Username">
                             </div>
                         </div>
                         <div class="form-group">
@@ -102,7 +104,7 @@ if($_POST) {
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-default"> <i class="glyphicon glyphicon-log-in"></i>Sign in</button>
+                            <button type="submit" name="submit" class="btn btn-default"> <i class="glyphicon glyphicon-log-in"></i>Sign in</button>
                             </div>
                         </div>
                         </form>
