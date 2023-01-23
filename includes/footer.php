@@ -9,6 +9,6 @@
     <script type="text/javascript" src="assets/plugins/fileinput/js/fileinput.min.js"></script>
 
     <!--dataTables js-->
-    <script type="text/javascript" src="assets/plugins/datatables/datatables.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
 </body>
 </html>

@@ -13,7 +13,7 @@
     <!--custom css-->
     <link rel="stylesheet" type="text/css" href="custom/css/custom.css">
     <!--dataTables-->
-    <link rel="stylesheet" type="text/css" href="assets/plugins/datatables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
     <!--file input-->
     <link rel="stylesheet" type="text/css" href="assets/plugins/fileinput/css/fileinput.min.css">
     <!--jquery-->

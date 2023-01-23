@@ -15,7 +15,7 @@
                     <button class="btn btn-default" data-toggle="modal" data-target="#addBrandModal"> <i class="glyphicon glyphicon-plus-sign"></i> Add Brand </button>
 
                 </div><!-- /div-action-->
-                <table class="table">
+                <table class="table" id="manageBrandTable">
                     <thead>
                         <tr>
                             <th>Brand Name</th>
@@ -42,6 +42,8 @@
       <form class="form-horizontal" id="submitBrandForm" action="php_action/createBrand.php" method="POST">
 
       <div class="modal-body">
+
+      <div id="add-brand-messages"></div>
 
         <div class="form-group">
             <label for="brandName" class="col-sm-3 control-label">Brand Name :</label>
@@ -133,6 +135,6 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-
+<script type="text/javascript" src="custom/js/brand.js"></script>
 
 <?php require_once 'includes/footer.php'; ?>
