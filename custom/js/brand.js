@@ -5,7 +5,10 @@ $(document).ready(function(){
     $("#navBrand").addClass('active');
 
     // manage brand table
-    manageBrandTable = $("#manageBrandTable").DataTable();
+    manageBrandTable = $("#manageBrandTable").DataTable({
+        'ajax' : 'php_action/fetchBrand.php',
+        'order' : []
+    });
 
     //submit brand form function
     $("#submitBrandForm").unbind('submit').bind('submit', function(){
@@ -40,7 +43,8 @@ $(document).ready(function(){
 
             //button loading
             $("#createBrandBtn").button('loading');
-
+            console.log(form.serialize());
+            debugger
             $.ajax({
                 url: form.attr('action'),
                 type: form.attr('method'),
@@ -76,8 +80,26 @@ $(document).ready(function(){
                         }); // /.alert
                     }
                 }
-            })
+            });
         }
         return false;
-    });
-} );
+    }); // /submit brand from function
+    
+});
+function removeBrands(brandId =null) {
+    if(brandId){
+        $("#removeBrandBtn").unbind('click').bind('click', function(){
+            $.ajax({
+                url: 'php_action/removeBrand.php',
+                type: 'post',
+                data: {brandId : brandId},
+                dataType: 'json',
+                success:function(response){
+                    if(response.success == true){
+                        $("#remove")
+                    }
+                }
+            });// /ajax
+        });
+    }// /if
+}
